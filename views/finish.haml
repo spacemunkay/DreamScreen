@@ -1,0 +1,7 @@
+#wrapper
+  #selected
+    %img( class="thumb" src="images/final/#{@name}")
+    %a( href="/" ) GO BACK
+  #bg
+    - @out_images.each do |i|
+      %img( class="final" src="images/final/#{i}")

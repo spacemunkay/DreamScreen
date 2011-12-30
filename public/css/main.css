@@ -1,0 +1,40 @@
+#raw {
+  width:100%;
+  height: 100%;
+  /**float: left;*/
+  /**overflow-y: scroll;*/
+}
+.raw {
+  width: 800px;
+  height: 600px;
+}
+
+#bg {
+  width:800px;
+  height: 700px;
+  overflow-y: scroll;
+}
+.bg {
+  width: 800px;
+  height: 600px;
+}
+
+#final {
+  width:800px;
+  height: 700px;
+  overflow-y: scroll;
+}
+.final {
+  width: 800px;
+  height: 600px;
+}
+#selected{
+  font-size: 3em;
+  float: right;
+}
+
+.thumb {
+  width: 400px;
+  height: 300px;
+  display: block;
+}

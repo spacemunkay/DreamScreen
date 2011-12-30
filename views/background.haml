@@ -1,0 +1,8 @@
+#wrapper
+  #selected
+    %img( class="thumb" src="images/raw/#{@fname}")
+    %a( href="/" ) GO BACK
+  #bg
+    - @bg_images.each do |i|
+      %a( href="finish?fname=#{@fname}&bgname=#{i}")
+        %img( class="bg" src="images/bg/#{i}")
