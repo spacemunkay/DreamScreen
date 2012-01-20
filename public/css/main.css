@@ -1,3 +1,17 @@
+a{
+
+color: #0C5DA5;
+font-style: none;
+text-decoration: none;
+}
+
+body{
+
+font: Helvetica;
+background: #333333;
+
+}
+
 #raw {
   width:100%;
   height: 100%;
@@ -5,16 +19,18 @@
   /**overflow-y: scroll;*/
 }
 .raw {
-  width: 800px;
-  height: 600px;
+  border: 1px solid #000;
+  width: 75%;
 }
 
 #bg {
+  border: 1px solid #000;
   width:800px;
   height: 700px;
   overflow-y: scroll;
 }
 .bg {
+  border: 1px solid #000;
   width: 800px;
   height: 600px;
 }
@@ -27,6 +43,7 @@
 .final {
   width: 800px;
   height: 600px;
+  border: 1px solid #000;
 }
 #selected{
   font-size: 3em;
@@ -34,6 +51,7 @@
 }
 
 .thumb {
+  border: 1px solid #000;
   width: 400px;
   height: 300px;
   display: block;
