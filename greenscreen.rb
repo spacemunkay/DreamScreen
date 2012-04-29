@@ -1,10 +1,11 @@
 require 'RMagick'
 include Magick
 
-OUT_DIR_PATH = "public/images/final"
-BG_DIR_PATH = "public/images/bg"
-SCREEN_DIR_PATH = "public/images/screened"
-RAW_DIR_PATH = "public/images/raw"
+BASE = File.expand_path(File.dirname(__FILE__))
+OUT_DIR_PATH = BASE + "/public/images/final"
+BG_DIR_PATH = BASE + "/public/images/bg"
+SCREEN_DIR_PATH = BASE + "/public/images/screened"
+RAW_DIR_PATH = BASE + "/public/images/raw"
 
 def get_filenames(dir)
     fnames = []

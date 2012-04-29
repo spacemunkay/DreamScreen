@@ -1,7 +1,9 @@
 require 'rubygems'
 require 'sinatra'
 require 'haml'
-require 'greenscreen.rb'
+#puts File.dirname(__FILE__)
+require File.expand_path(File.dirname(__FILE__) + "/greenscreen")
+#require 'greenscreen'
 
 
 get '/' do
@@ -12,7 +14,6 @@ end
 get '/choose_background' do
   @fname = params["fname"]
   @bg_images = bg_images 
-
   if (!screened_images.include?(@fname))
     img = remove_green(@fname)
     name = @fname.split(".")[0] + ".png"
@@ -28,7 +29,7 @@ get '/finish' do
   
   img = merge_background(@fname.split(".")[0] + ".png", @bg_name) 
   name = Time.now.getutc.to_s
-  @name = @fname + "_" + @bg_name + "_" + name.split(" ").join("_") + ".png"
+  @name = @fname.split(".")[0]+ "_" + @bg_name.split(".")[0] + "_" + name.split(" ").join("_") + ".png"
   save_image( @name , img) 
 
   @out_images = out_images 
