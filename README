@@ -1,0 +1,11 @@
+install brew
+brew install ghostscript
+brew install imagemagick
+install RVM
+install bundler
+
+
+Issues:
+  If you get segmentation fault errors from imagemagick/rmagick, 
+    try removing imagemagick: brew remove imagemagick
+    and reinstall withou openmp: brew install -f imagemagick --disable-openmp
