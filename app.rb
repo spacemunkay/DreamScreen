@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'sinatra'
 require 'haml'
+require 'json'
+
 #puts File.dirname(__FILE__)
 require File.expand_path(File.dirname(__FILE__) + "/greenscreen")
 #require 'greenscreen'
@@ -39,4 +41,24 @@ end
 get '/error' do
   @error = params["error"]
   haml :error
+end
+
+get '/raw' do
+  content_type :json
+  raw_images.to_json
+end
+
+get '/background' do
+  content_type :json
+  bg_images.to_json
+end
+
+get '/screened' do
+  content_type :json
+  screened_images.to_json
+end
+
+get '/out' do
+  content_type :json
+  out_images.to_json
 end
