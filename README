@@ -1,14 +1,16 @@
 Mac OSX Instructions (make sure you have the latest XCode)
 
-install brew
-brew install ghostscript
-brew install imagemagick
-install RVM
-install bundler
+    install brew
+    brew install ghostscript
+    brew install imagemagick
+    install RVM
+    install bundler
 
-rvm install 1.9.3
+    rvm install 1.9.3
 
-then cd into DreamScreen and rvm should handle the rest
+    then cd into ./DreamScreen and rvm should handle the rest
+
+To run: ruby app.rb
 
 Issues:
   -If you get extension build errors when installing rmagick or
