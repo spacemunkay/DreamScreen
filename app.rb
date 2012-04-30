@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'sinatra'
 require 'haml'
+require 'json'
+
 require File.expand_path(File.dirname(__FILE__) + "/dreamscreen")
 
 def base_name(fname)
@@ -43,20 +45,20 @@ end
 
 get '/raw' do
   content_type :json
-  raw_images.to_json
+  ::DreamScreen.raw_images.to_json
 end
 
 get '/background' do
   content_type :json
-  bg_images.to_json
+  ::DreamScreen.bg_images.to_json
 end
 
 get '/screened' do
   content_type :json
-  screened_images.to_json
+  ::DreamScreen.screened_images.to_json
 end
 
 get '/out' do
   content_type :json
-  out_images.to_json
+  ::DreamScreen.out_images.to_json
 end
