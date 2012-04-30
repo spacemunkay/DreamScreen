@@ -1,25 +1,23 @@
 require 'rubygems'
 require 'sinatra'
 require 'haml'
-require 'json'
+require File.expand_path(File.dirname(__FILE__) + "/dreamscreen")
 
-#puts File.dirname(__FILE__)
-require File.expand_path(File.dirname(__FILE__) + "/greenscreen")
-#require 'greenscreen'
-
+def base_name(fname)
+  fname.split(".")[0]
+end
 
 get '/' do
-  @raw_images = raw_images 
+  @raw_images = ::DreamScreen.raw_images.take(10)
   haml :index
 end
 
 get '/choose_background' do
   @fname = params["fname"]
-  @bg_images = bg_images 
-  if (!screened_images.include?(@fname))
-    img = remove_green(@fname)
-    name = @fname.split(".")[0] + ".png"
-    save_screen( name , img) 
+  @bg_images = ::DreamScreen.bg_images 
+  if (!::DreamScreen.screened_images.include?(@fname))
+    img = ::DreamScreen.remove_green(@fname)
+    ::DreamScreen.save_screen( base_name(@fname) + ".png" , img) 
   end
 
   haml :background
@@ -29,12 +27,12 @@ get '/finish' do
   @fname = params["fname"]
   @bg_name = params["bgname"]
   
-  img = merge_background(@fname.split(".")[0] + ".png", @bg_name) 
+  img = ::DreamScreen.merge_background( base_name(@fname) + ".png", @bg_name) 
   name = Time.now.getutc.to_s
-  @name = @fname.split(".")[0]+ "_" + @bg_name.split(".")[0] + "_" + name.split(" ").join("_") + ".png"
-  save_image( @name , img) 
+  @name = base_name(@fname) + "_" + base_name(@bg_name) + "_" + name.split(" ").join("_") + ".png"
+  ::DreamScreen.save_image( @name , img) 
 
-  @out_images = out_images 
+  @out_images = ::DreamScreen.out_images 
   haml :finish
 end
 
