@@ -9,6 +9,10 @@ def base_name(fname)
   fname.split(".")[0]
 end
 
+get '/test' do
+  haml :test
+end
+
 get '/' do
   @raw_images = ::DreamScreen.raw_images.take(10)
   haml :index
@@ -45,20 +49,32 @@ end
 
 get '/raw' do
   content_type :json
-  ::DreamScreen.raw_images.to_json
+  ::DreamScreen.raw_images.map{ |x| {:path => x} }.to_json
 end
 
 get '/background' do
   content_type :json
-  ::DreamScreen.bg_images.to_json
+  ::DreamScreen.bg_images.map{ |x| {:path => x} }.to_json
 end
 
 get '/screened' do
   content_type :json
-  ::DreamScreen.screened_images.to_json
+  ::DreamScreen.screened_images.map{ |x| {:path => x} }.to_json
 end
 
 get '/out' do
   content_type :json
-  ::DreamScreen.out_images.to_json
+  ::DreamScreen.out_images.map{ |x| {:path => x} }.to_json
+end
+
+post '/merge' do
+  content_type :json
+  #TODO figure this out
+  #@fname = params[:front]
+  #@bg_name = params[:bg]
+  
+  img = ::DreamScreen.merge_background( base_name(@fname) + ".png", @bg_name) 
+  name = Time.now.getutc.to_s
+  @name = base_name(@fname) + "_" + base_name(@bg_name) + "_" + name.split(" ").join("_") + ".png"
+  ::DreamScreen.save_image( @name , img)
 end
