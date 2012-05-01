@@ -69,10 +69,9 @@ end
 
 post '/merge' do
   content_type :json
-  #TODO figure this out
-  #@fname = params[:front]
-  #@bg_name = params[:bg]
-  
+  data = JSON.parse(request.body.read)
+  @fname = data["front"]
+  @bg_name = data["bg"]
   img = ::DreamScreen.merge_background( base_name(@fname) + ".png", @bg_name) 
   name = Time.now.getutc.to_s
   @name = base_name(@fname) + "_" + base_name(@bg_name) + "_" + name.split(" ").join("_") + ".png"
